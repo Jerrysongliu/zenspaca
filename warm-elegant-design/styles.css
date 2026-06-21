@@ -1,17 +1,22 @@
 :root {
-  --paper: #fff8ef;
-  --soft: #f6e6d8;
-  --cream: #fffcf7;
-  --rose: #b7655f;
-  --clay: #9b5f4b;
-  --sage: #566f59;
-  --sage-deep: #2e493a;
-  --plum: #3c2733;
-  --ink: #21191b;
-  --muted: #6f6260;
-  --line: #e4cfc1;
-  --gold: #c79a52;
+  --paper: #fbf7f1;
+  --paper-warm: #f4e9dc;
+  --surface: rgb(255 255 255 / 72%);
+  --surface-solid: #fffdf8;
+  --surface-dark: rgb(47 34 43 / 70%);
+  --rose: #b76d63;
+  --clay: #8d5c4b;
+  --sage: #5f775f;
+  --sage-deep: #2f4a3d;
+  --plum: #332433;
+  --ink: #21191d;
+  --muted: #6e625f;
+  --line: rgb(78 54 45 / 16%);
+  --line-light: rgb(255 255 255 / 42%);
+  --gold: #c99e5f;
   --white: #ffffff;
+  --shadow: 0 22px 70px rgb(58 37 31 / 14%);
+  --shadow-soft: 0 12px 40px rgb(58 37 31 / 10%);
 }
 
 * {
@@ -23,12 +28,14 @@ html {
 }
 
 body {
-  background: var(--paper);
+  background:
+    linear-gradient(180deg, #fffaf4 0%, #f7ede2 48%, #edf4ed 100%);
   color: var(--ink);
   font-family:
     Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI",
     sans-serif;
   margin: 0;
+  min-width: 320px;
 }
 
 body,
@@ -75,13 +82,17 @@ blockquote {
 
 .site-header {
   align-items: center;
-  background: rgb(255 248 239 / 94%);
-  border-bottom: 1px solid var(--line);
+  backdrop-filter: blur(22px) saturate(170%);
+  background: rgb(255 250 244 / 78%);
+  border: 1px solid rgb(255 255 255 / 58%);
+  border-left: 0;
+  border-right: 0;
+  box-shadow: 0 10px 32px rgb(61 42 36 / 8%);
   display: grid;
   gap: 20px;
   grid-template-columns: auto 1fr auto;
-  min-height: 82px;
-  padding: 14px 42px;
+  min-height: 78px;
+  padding: 13px 42px;
   position: sticky;
   top: 0;
   z-index: 20;
@@ -94,8 +105,12 @@ blockquote {
 }
 
 .brand img {
-  border: 1px solid var(--line);
+  border: 1px solid rgb(255 255 255 / 76%);
   border-radius: 50%;
+  box-shadow: 0 8px 22px rgb(58 37 31 / 18%);
+  height: 48px;
+  object-fit: cover;
+  width: 48px;
 }
 
 .brand strong,
@@ -106,29 +121,38 @@ blockquote {
 .brand strong {
   color: var(--plum);
   font-family: Georgia, "Times New Roman", serif;
-  font-size: 22px;
+  font-size: 24px;
 }
 
 .brand small {
   color: var(--muted);
-  font-size: 12px;
+  font-size: 13px;
   margin-top: 1px;
 }
 
 .primary-nav {
+  align-items: center;
   display: flex;
-  gap: 28px;
+  gap: 7px;
   justify-content: center;
 }
 
 .primary-nav a,
 .header-call {
   font-size: 14px;
-  font-weight: 750;
+  font-weight: 760;
 }
 
 .primary-nav a {
+  border: 1px solid transparent;
+  border-radius: 8px;
   color: var(--plum);
+  padding: 10px 13px;
+}
+
+.primary-nav a:hover {
+  background: rgb(255 255 255 / 60%);
+  border-color: var(--line);
 }
 
 .header-call,
@@ -137,13 +161,14 @@ blockquote {
 .site-footer a {
   align-items: center;
   background: var(--plum);
-  border: 1px solid var(--plum);
-  border-radius: 6px;
+  border: 1px solid rgb(255 255 255 / 16%);
+  border-radius: 8px;
+  box-shadow: 0 14px 30px rgb(51 36 51 / 18%);
   color: var(--white);
   display: inline-flex;
-  font-weight: 800;
+  font-weight: 820;
   justify-content: center;
-  min-height: 44px;
+  min-height: 46px;
   padding: 12px 18px;
 }
 
@@ -152,7 +177,6 @@ blockquote {
 .location-grid a:hover,
 .site-footer a:hover {
   background: var(--sage-deep);
-  border-color: var(--sage-deep);
 }
 
 .eyebrow {
@@ -166,37 +190,44 @@ blockquote {
 .hero {
   align-items: center;
   background-image:
-    linear-gradient(90deg, rgb(60 39 51 / 91%), rgb(60 39 51 / 62%), rgb(60 39 51 / 28%)),
+    linear-gradient(90deg, rgb(48 32 42 / 91%), rgb(48 32 42 / 66%), rgb(48 32 42 / 18%)),
+    linear-gradient(180deg, rgb(255 248 239 / 0%) 72%, var(--paper) 100%),
     url("images/spa-room.jpg");
   background-position: center;
   background-size: cover;
   color: var(--white);
   display: flex;
-  min-height: 68svh;
-  padding: 76px 42px 82px;
+  min-height: 70svh;
+  padding: 82px 42px 92px;
+  position: relative;
 }
 
 .hero-inner {
-  max-width: 780px;
+  max-width: 820px;
+  position: relative;
+  z-index: 1;
 }
 
 .hero .eyebrow {
-  color: var(--gold);
+  color: #efc377;
+  text-shadow: 0 1px 18px rgb(0 0 0 / 26%);
 }
 
 .hero h1 {
+  color: var(--white);
   font-size: 68px;
   line-height: 1.04;
   margin-top: 14px;
-  max-width: 820px;
+  max-width: 840px;
+  text-shadow: 0 10px 34px rgb(0 0 0 / 24%);
 }
 
 .hero p:not(.eyebrow) {
-  color: rgb(255 255 255 / 86%);
+  color: rgb(255 255 255 / 87%);
   font-size: 20px;
   line-height: 1.65;
   margin-top: 24px;
-  max-width: 660px;
+  max-width: 690px;
 }
 
 .hero-actions {
@@ -208,14 +239,42 @@ blockquote {
 
 .hero-actions a:nth-child(2) {
   align-items: center;
-  border: 1px solid rgb(255 255 255 / 46%);
-  border-radius: 6px;
+  backdrop-filter: blur(18px) saturate(160%);
+  background: rgb(255 255 255 / 13%);
+  border: 1px solid rgb(255 255 255 / 42%);
+  border-radius: 8px;
   color: var(--white);
   display: inline-flex;
-  font-weight: 800;
+  font-weight: 820;
   justify-content: center;
-  min-height: 44px;
+  min-height: 46px;
   padding: 12px 18px;
+}
+
+.hero-actions a:nth-child(2):hover {
+  background: rgb(255 255 255 / 22%);
+}
+
+.hero-metrics {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-top: 24px;
+}
+
+.hero-metrics span {
+  align-items: center;
+  backdrop-filter: blur(18px) saturate(155%);
+  background: rgb(255 255 255 / 20%);
+  border: 1px solid rgb(255 255 255 / 38%);
+  border-radius: 8px;
+  box-shadow: 0 10px 24px rgb(0 0 0 / 14%);
+  color: rgb(255 255 255 / 88%);
+  display: inline-flex;
+  font-size: 13px;
+  font-weight: 760;
+  min-height: 34px;
+  padding: 9px 12px;
 }
 
 .location-ribbon,
@@ -226,7 +285,7 @@ blockquote {
 }
 
 .location-ribbon {
-  background: var(--cream);
+  background: linear-gradient(180deg, var(--paper), #fffdf8);
 }
 
 .section-heading {
@@ -263,9 +322,11 @@ blockquote {
 .menu-board section,
 .standard-list article,
 .review-grid figure {
-  background: var(--white);
-  border: 1px solid var(--line);
+  backdrop-filter: blur(22px) saturate(150%);
+  background: var(--surface);
+  border: 1px solid rgb(255 255 255 / 66%);
   border-radius: 8px;
+  box-shadow: var(--shadow-soft);
 }
 
 .location-grid article {
@@ -297,7 +358,7 @@ blockquote {
 .story-section {
   align-items: center;
   background:
-    linear-gradient(180deg, rgb(246 230 216 / 90%), rgb(255 248 239 / 100%)),
+    linear-gradient(120deg, rgb(244 233 220 / 92%), rgb(255 253 248 / 92%) 52%, rgb(232 241 231 / 88%)),
     url("images/zen-texture.png");
   display: grid;
   gap: 54px;
@@ -312,9 +373,17 @@ blockquote {
   max-width: 630px;
 }
 
+.story-image {
+  background: rgb(255 255 255 / 48%);
+  border: 1px solid var(--line-light);
+  border-radius: 8px;
+  box-shadow: var(--shadow);
+  padding: 10px;
+}
+
 .story-image img {
   aspect-ratio: 1.08;
-  border-radius: 8px;
+  border-radius: 6px;
   object-fit: cover;
   width: 100%;
 }
@@ -341,7 +410,7 @@ blockquote {
 }
 
 .services-section {
-  background: var(--paper);
+  background: linear-gradient(180deg, #fffdf8, var(--paper-warm));
 }
 
 .menu-board {
@@ -409,7 +478,9 @@ blockquote {
 }
 
 .standards-section {
-  background: var(--plum);
+  background:
+    linear-gradient(135deg, rgb(51 36 51 / 98%), rgb(47 74 61 / 96%)),
+    url("images/zen-texture.png");
 }
 
 .standards-section .section-heading h2,
@@ -418,7 +489,7 @@ blockquote {
 }
 
 .standards-section .eyebrow {
-  color: var(--gold);
+  color: #efc377;
 }
 
 .standard-list {
@@ -430,14 +501,14 @@ blockquote {
 }
 
 .standard-list article {
-  background: rgb(255 255 255 / 8%);
-  border-color: rgb(255 255 255 / 15%);
+  background: rgb(255 255 255 / 10%);
+  border-color: rgb(255 255 255 / 16%);
   min-height: 230px;
   padding: 24px;
 }
 
 .standard-list span {
-  color: var(--gold);
+  color: #efc377;
   font-family: Georgia, "Times New Roman", serif;
   font-size: 32px;
   font-weight: 700;
@@ -451,12 +522,12 @@ blockquote {
 }
 
 .standard-list p {
-  color: rgb(255 255 255 / 74%);
+  color: rgb(255 255 255 / 76%);
   margin-top: 12px;
 }
 
 .reviews-section {
-  background: var(--soft);
+  background: linear-gradient(180deg, #f3e4d8, #eef4ed);
   display: grid;
   gap: 34px;
   grid-template-columns: minmax(260px, 0.6fr) minmax(0, 1fr);
@@ -488,7 +559,9 @@ blockquote {
 
 .site-footer {
   align-items: center;
-  background: var(--ink);
+  background:
+    linear-gradient(135deg, rgb(33 25 29 / 98%), rgb(51 36 51 / 94%)),
+    url("images/zen-texture.png");
   color: var(--white);
   display: flex;
   gap: 30px;
@@ -497,7 +570,7 @@ blockquote {
 }
 
 .site-footer .eyebrow {
-  color: var(--gold);
+  color: #efc377;
 }
 
 .site-footer h2 {
@@ -508,7 +581,7 @@ blockquote {
 
 @media (max-width: 980px) {
   .primary-nav {
-    gap: 16px;
+    gap: 2px;
   }
 
   .location-grid,
@@ -526,7 +599,16 @@ blockquote {
 @media (max-width: 720px) {
   .site-header {
     grid-template-columns: 1fr auto;
-    padding: 12px 20px;
+    padding: 12px 18px;
+  }
+
+  .brand img {
+    height: 44px;
+    width: 44px;
+  }
+
+  .brand strong {
+    font-size: 21px;
   }
 
   .primary-nav {
@@ -534,7 +616,7 @@ blockquote {
   }
 
   .header-call {
-    min-height: 40px;
+    min-height: 42px;
     padding: 10px 14px;
   }
 
@@ -550,9 +632,13 @@ blockquote {
   }
 
   .hero {
-    min-height: 66svh;
-    padding-bottom: 58px;
-    padding-top: 58px;
+    background-image:
+      linear-gradient(90deg, rgb(48 32 42 / 92%), rgb(48 32 42 / 70%)),
+      linear-gradient(180deg, rgb(255 248 239 / 0%) 72%, var(--paper) 100%),
+      url("images/spa-room.jpg");
+    min-height: 70svh;
+    padding-bottom: 62px;
+    padding-top: 64px;
   }
 
   .hero h1 {
@@ -567,6 +653,11 @@ blockquote {
   .location-grid a,
   .site-footer a {
     width: 100%;
+  }
+
+  .hero-metrics {
+    display: grid;
+    grid-template-columns: 1fr;
   }
 
   .section-heading h2,
